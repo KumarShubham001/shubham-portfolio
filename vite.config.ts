@@ -4,6 +4,7 @@ import path from "path";
 
 export default defineConfig(({ mode }) => ({
   server: {
+    bas: "/shubham-portfolio",
     host: "::",
     port: 8080,
     hmr: {
