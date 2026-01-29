@@ -1,76 +1,75 @@
 import { motion } from 'framer-motion';
-import { 
-  Code2, 
-  Palette, 
-  Database, 
-  Server, 
-  Smartphone, 
-  GitBranch,
-  Cloud,
-  Zap,
+import {
+  Code2,
+  Palette,
+  Database,
+  Server, Zap,
   Shield,
-  Layers
+  Layers,
+  Users,
+  Cpu,
+  Terminal
 } from 'lucide-react';
 
 const skills = [
   {
     icon: Code2,
     title: 'Frontend',
-    description: 'React, Vue, TypeScript, Next.js',
+    description: 'React, Redux, Angular, Next.js, TypeScript',
     color: 'cyan' as const,
   },
   {
     icon: Server,
     title: 'Backend',
-    description: 'Node.js, Python, GraphQL, REST',
+    description: 'Node.js, Express.js, Python FastAPI',
     color: 'magenta' as const,
   },
   {
     icon: Database,
     title: 'Databases',
-    description: 'PostgreSQL, MongoDB, Redis',
+    description: 'PostgreSQL, SQL',
     color: 'cyan' as const,
   },
   {
     icon: Palette,
     title: 'UI/UX Design',
-    description: 'Figma, Tailwind, Framer Motion',
+    description: 'Tailwind, Material UI, Ant Design, Lovable UX',
     color: 'magenta' as const,
   },
   {
-    icon: Cloud,
-    title: 'Cloud & DevOps',
-    description: 'AWS, Docker, Kubernetes, CI/CD',
+    icon: Shield,
+    title: 'Security & Auth',
+    description: 'RBAC, Okta, JWT, Certificate based auth',
     color: 'cyan' as const,
   },
   {
-    icon: Smartphone,
-    title: 'Mobile Dev',
-    description: 'React Native, Flutter, PWAs',
+    icon: Terminal,
+    title: 'Dev Tools',
+    description: 'Github Copilot, Github, Agile, Vite',
     color: 'magenta' as const,
   },
   {
-    icon: GitBranch,
-    title: 'Version Control',
-    description: 'Git, GitHub, GitLab, Workflows',
+    icon: Cpu,
+    title: 'AI & Automation',
+    description: 'Gen AI integration, Workflow automation',
     color: 'cyan' as const,
   },
   {
     icon: Zap,
     title: 'Performance',
-    description: 'Optimization, Caching, CDNs',
+    description: 'Frontend optimization, SEO',
     color: 'magenta' as const,
   },
   {
-    icon: Shield,
-    title: 'Security',
-    description: 'Auth, Encryption, Best Practices',
+    icon: Users,
+    title: 'Leadership',
+    description: 'Mentorship, Team Leading',
     color: 'cyan' as const,
   },
   {
     icon: Layers,
     title: 'Architecture',
-    description: 'System Design, Microservices',
+    description: 'Scalable web apps, System Design',
     color: 'magenta' as const,
   },
 ];
@@ -89,9 +88,8 @@ const SkillCard = ({ skill, index }: { skill: typeof skills[0]; index: number })
       className="group"
     >
       <motion.div
-        className={`glass-card rounded-xl p-6 h-full transition-all duration-300 ${
-          isCyan ? 'hover:neon-border-cyan' : 'hover:neon-border-magenta'
-        }`}
+        className={`glass-card rounded-xl p-6 h-full transition-all duration-300 ${isCyan ? 'hover:neon-border-cyan' : 'hover:neon-border-magenta'
+          }`}
         style={{
           animation: `float ${6 + index * 0.5}s ease-in-out infinite`,
           animationDelay: `${index * 0.2}s`,
@@ -99,27 +97,24 @@ const SkillCard = ({ skill, index }: { skill: typeof skills[0]; index: number })
       >
         {/* Icon Container */}
         <motion.div
-          className={`w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 ${
-            isCyan 
-              ? 'bg-primary/10 group-hover:bg-primary/20' 
-              : 'bg-secondary/10 group-hover:bg-secondary/20'
-          }`}
+          className={`w-14 h-14 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 ${isCyan
+            ? 'bg-primary/10 group-hover:bg-primary/20'
+            : 'bg-secondary/10 group-hover:bg-secondary/20'
+            }`}
           whileHover={{ rotate: [0, -10, 10, 0] }}
           transition={{ duration: 0.5 }}
         >
-          <Icon 
-            className={`w-7 h-7 transition-all duration-300 ${
-              isCyan 
-                ? 'text-primary group-hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]' 
-                : 'text-secondary group-hover:drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]'
-            }`}
+          <Icon
+            className={`w-7 h-7 transition-all duration-300 ${isCyan
+              ? 'text-primary group-hover:drop-shadow-[0_0_10px_rgba(0,255,255,0.8)]'
+              : 'text-secondary group-hover:drop-shadow-[0_0_10px_rgba(255,0,255,0.8)]'
+              }`}
           />
         </motion.div>
 
         {/* Title */}
-        <h3 className={`font-display text-lg font-bold mb-2 transition-all duration-300 ${
-          isCyan ? 'group-hover:neon-text-cyan' : 'group-hover:neon-text-magenta'
-        }`}>
+        <h3 className={`font-display text-lg font-bold mb-2 transition-all duration-300 ${isCyan ? 'group-hover:neon-text-cyan' : 'group-hover:neon-text-magenta'
+          }`}>
           {skill.title}
         </h3>
 
@@ -130,9 +125,8 @@ const SkillCard = ({ skill, index }: { skill: typeof skills[0]; index: number })
 
         {/* Animated underline */}
         <motion.div
-          className={`h-0.5 mt-4 rounded-full ${
-            isCyan ? 'bg-primary' : 'bg-secondary'
-          }`}
+          className={`h-0.5 mt-4 rounded-full ${isCyan ? 'bg-primary' : 'bg-secondary'
+            }`}
           initial={{ width: '0%' }}
           whileInView={{ width: '30%' }}
           whileHover={{ width: '100%' }}

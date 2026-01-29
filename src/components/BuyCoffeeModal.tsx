@@ -9,7 +9,7 @@ interface BuyCoffeeModalProps {
 
 const BuyCoffeeModal = ({ isOpen, onClose }: BuyCoffeeModalProps) => {
   const [copied, setCopied] = useState(false);
-  const upiId = 'cyberdev@upi'; // Replace with actual UPI ID
+  const upiId = '8407900285@ybl'; // Replace with actual UPI ID
 
   const handleCopy = async () => {
     try {

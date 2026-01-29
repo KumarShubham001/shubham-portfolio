@@ -7,19 +7,19 @@ const socialLinks = [
   {
     icon: Linkedin,
     label: 'LinkedIn',
-    href: 'https://linkedin.com/in/yourprofile',
+    href: 'https://www.linkedin.com/in/kumarshubhamdotin/',
     color: 'cyan' as const,
   },
   {
     icon: Github,
     label: 'GitHub',
-    href: 'https://github.com/yourprofile',
+    href: 'https://github.com/KumarShubham001',
     color: 'magenta' as const,
   },
   {
     icon: Mail,
     label: 'Email',
-    href: 'mailto:hello@youremail.com',
+    href: 'mailto:kr.shubham997@gmail.com',
     color: 'cyan' as const,
   },
 ];

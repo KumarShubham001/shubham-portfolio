@@ -1,56 +1,49 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 import { useRef } from 'react';
 
 const timelineData = [
   {
-    date: '2024.01.15',
-    title: 'Senior Interface Architect',
-    company: 'Current Corp',
-    description: 'Leading the frontend architecture for a next-gen SaaS platform. Building design systems and mentoring junior developers.',
-    tech: ['React', 'TypeScript', 'GraphQL', 'Tailwind'],
-    status: 'ACTIVE',
+    "date": "2024.09.01",
+    "title": "Senior Software Developer",
+    "company": "Ascendion",
+    "description": "Architecting AI-powered document generation and secure agent marketplaces from scratch. Implementing mission-critical RBAC and real-time streaming interfaces[cite: 15, 16, 20, 28].",
+    "tech": ["React 18", "FastAPI", "Python", "PostgreSQL", "Okta", "Vite"],
+    "status": "ACTIVE"
   },
   {
-    date: '2022.06.01',
-    title: 'Full-Stack Developer',
-    company: 'Tech Dynamics Ltd',
-    description: 'Developed scalable web applications serving 100K+ users. Implemented real-time features and optimized performance.',
-    tech: ['Node.js', 'React', 'PostgreSQL', 'AWS'],
-    status: 'COMPLETED',
+    "date": "2021.08.01",
+    "title": "Software Developer",
+    "company": "Dassault Systèmes",
+    "description": "Spearheaded high-performance migrations from legacy JS to React. Awarded Best Performer for optimizing IKEA platform scalability and architecting 3D space planning tools[cite: 29, 30, 33, 37].",
+    "tech": ["React", "Redux Toolkit", "Node.js", "Express", "SQL", "Mustache.js"],
+    "status": "COMPLETED"
   },
   {
-    date: '2020.09.20',
-    title: 'Frontend Developer',
-    company: 'Digital Nexus Inc',
-    description: 'Built responsive user interfaces and interactive dashboards. Collaborated with UX designers to implement pixel-perfect designs.',
-    tech: ['Vue.js', 'JavaScript', 'SCSS', 'Firebase'],
-    status: 'COMPLETED',
+    "date": "2020.05.01",
+    "title": "Software Developer",
+    "company": "Data Dynamics Inc",
+    "description": "Developed advanced analytics UI components and automated high-scale deployments using Ansible. Engineered complex state management for data-heavy applications [cite: 43-47, 49].",
+    "tech": ["React", "Node.js", "Express", "SQL", "Ansible", "Context API"],
+    "status": "COMPLETED"
   },
   {
-    date: '2019.03.10',
-    title: 'Junior Developer',
-    company: 'StartUp Alpha',
-    description: 'Started the journey into professional development. Learned agile methodologies and production-level coding practices.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-    status: 'COMPLETED',
-  },
-  {
-    date: '2018.06.15',
-    title: 'System Initialization',
-    company: 'Self-Taught Developer',
-    description: 'The beginning of an epic journey. First "Hello, World!" written. The spark that ignited a passion for code.',
-    tech: ['Curiosity', 'Determination', 'Stack Overflow'],
-    status: 'ORIGIN',
-  },
+    "date": "2019.09.01",
+    "title": "Associate Software Developer",
+    "company": "Infintus Innovations",
+    "description": "Built high-performance enterprise interfaces and custom reusable component libraries. Developed scalability testing scripts supporting 50+ file types [cite: 51-56, 60].",
+    "tech": ["Angular 7", "Material UI", "Node.js", "Express", "JWT", "Python"],
+    "status": "COMPLETED"
+  }
 ];
 
-const TimelineItem = ({ item, index, scrollProgress }: { 
-  item: typeof timelineData[0]; 
+const TimelineItem = ({ item, index, scrollProgress }: {
+  item: typeof timelineData[0];
   index: number;
-  scrollProgress: number;
+  scrollProgress: MotionValue<number>;
 }) => {
   const isLeft = index % 2 === 0;
-  const itemProgress = Math.min(1, Math.max(0, (scrollProgress - index * 0.15) / 0.2));
+  const itemProgress = useTransform(scrollProgress, (p) => Math.min(1, Math.max(0, (p - index * 0.15) / 0.2)));
+  const opacity = useTransform(itemProgress, (p) => 0.5 + p * 0.5);
 
   return (
     <motion.div
@@ -63,23 +56,21 @@ const TimelineItem = ({ item, index, scrollProgress }: {
       {/* Content Card */}
       <motion.div
         whileHover={{ scale: 1.02 }}
-        className={`glass-card rounded-xl p-6 flex-1 max-w-lg ${
-          item.status === 'ACTIVE' ? 'neon-border-cyan' : 'neon-border-magenta'
-        }`}
-        style={{ opacity: 0.5 + itemProgress * 0.5 }}
+        className={`glass-card rounded-xl p-6 flex-1 max-w-lg ${item.status === 'ACTIVE' ? 'neon-border-cyan' : 'neon-border-magenta'
+          }`}
+        style={{ opacity }}
       >
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <span className="font-mono text-xs text-primary">
             EST. {item.date}
           </span>
-          <span className={`font-mono text-xs px-2 py-1 rounded ${
-            item.status === 'ACTIVE' 
-              ? 'bg-primary/20 text-primary' 
-              : item.status === 'ORIGIN'
+          <span className={`font-mono text-xs px-2 py-1 rounded ${item.status === 'ACTIVE'
+            ? 'bg-primary/20 text-primary'
+            : item.status === 'ORIGIN'
               ? 'bg-secondary/20 text-secondary'
               : 'bg-muted text-muted-foreground'
-          }`}>
+            }`}>
             {item.status}
           </span>
         </div>
@@ -113,9 +104,8 @@ const TimelineItem = ({ item, index, scrollProgress }: {
       {/* Timeline Node */}
       <div className="relative flex-shrink-0 hidden md:block">
         <motion.div
-          className={`w-4 h-4 rounded-full ${
-            item.status === 'ACTIVE' ? 'bg-primary' : 'bg-secondary'
-          }`}
+          className={`w-4 h-4 rounded-full ${item.status === 'ACTIVE' ? 'bg-primary' : 'bg-secondary'
+            }`}
           animate={{
             boxShadow: item.status === 'ACTIVE'
               ? ['0 0 10px rgba(0, 255, 255, 0.5)', '0 0 30px rgba(0, 255, 255, 0.8)', '0 0 10px rgba(0, 255, 255, 0.5)']
@@ -189,7 +179,7 @@ const TimelineSection = () => {
                 key={item.date}
                 item={item}
                 index={index}
-                scrollProgress={0}
+                scrollProgress={scrollYProgress}
               />
             ))}
           </div>

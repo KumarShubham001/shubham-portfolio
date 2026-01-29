@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Download, Zap, Mail } from 'lucide-react';
 
+import resume from '@/assets/Kumar_Shubham_resume_updated.pdf';
+
 const HireMeSection = () => {
   return (
     <section id="hire" className="relative py-32 px-4">
@@ -13,7 +15,7 @@ const HireMeSection = () => {
           className="glass-card rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
         >
           {/* Background Grid Effect */}
-          <div 
+          <div
             className="absolute inset-0 opacity-30"
             style={{
               backgroundImage: `
@@ -65,8 +67,8 @@ const HireMeSection = () => {
               transition={{ delay: 0.4 }}
               className="font-mono text-muted-foreground max-w-2xl mx-auto mb-8"
             >
-              Ready to bring my expertise in frontend architecture, 
-              full-stack development, and pixel-perfect design to your team. 
+              Ready to bring my expertise in frontend architecture,
+              full-stack development, and pixel-perfect design to your team.
               Let's build something extraordinary together.
             </motion.p>
 
@@ -79,7 +81,9 @@ const HireMeSection = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               {/* Download CV Button */}
-              <motion.button
+              <motion.a
+                href={resume}
+                download="Kumar_Shubham_resume_updated.pdf"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="relative group px-8 py-4 rounded-lg font-display font-bold text-primary-foreground overflow-hidden"
@@ -89,13 +93,13 @@ const HireMeSection = () => {
               >
                 {/* Scanning Light Effect */}
                 <span className="absolute inset-0 scan-button" />
-                
+
                 {/* Button Content */}
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   <Download className="w-5 h-5" />
                   DOWNLOAD_CV.pdf
                 </span>
-              </motion.button>
+              </motion.a>
 
               {/* Contact Button */}
               <motion.a
